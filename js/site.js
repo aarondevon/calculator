@@ -25,23 +25,25 @@ document.querySelectorAll(".number").forEach(numberButton => {
   })
 })
 
-const symbolsContainer = document.querySelector('#symbols-container');
-symbolsContainer.addEventListener('click', (event) => {
-  const currentOperation = event.target.id;
+document.querySelectorAll('.math-symbol').forEach(symbolButton => {
+  symbolButton.addEventListener('click', (event) => {
+    const currentOperation = event.target.id;
 
-  if (!operator) {
-    operator = currentOperation;
-  }
+    if (!operator) {
+      operator = currentOperation;
+    }
 
-  if (firstOperand && operator && secondOperand) {
-    const result = calculate();
-    firstOperand = result;
-    operator = currentOperation;
-    secondOperand = '';
-    display.value = result;
-  }
+    if (firstOperand && operator && secondOperand) {
+      const result = calculate();
+      firstOperand = result;
+      operator = currentOperation;
+      secondOperand = '';
+      display.value = result;
+    }
 
-})
+  })
+});
+
 
 const isEmptyOperand = (operand) => {
   return operand === '';
