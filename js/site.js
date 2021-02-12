@@ -7,9 +7,9 @@ document.querySelectorAll(".number").forEach(numberButton => {
   numberButton.addEventListener("click", event => {
     const currentNumber = event.target.textContent;
 
-    if(firstOperand && !operator && !secondOperand) {
-      firstOperand = '';
-    }
+    // if(firstOperand && !operator && !secondOperand) {
+    //   firstOperand = '';
+    // }
 
     if (!operator) {
       firstOperand += currentNumber;
@@ -39,6 +39,26 @@ symbolsContainer.addEventListener('click', (event) => {
     display.value = result;
   }
 
+})
+
+const isEmptyOperand = (operand) => {
+  return operand === '';
+};
+
+const doesDecimalExist = (operand) => {
+  return operand.includes('.');
+};
+
+document.querySelector('.decimal').addEventListener('click', () => {
+  if(!operator) {
+    display.value = isEmptyOperand(firstOperand) ? firstOperand = '0.' : firstOperand;
+    display.value = doesDecimalExist(firstOperand) ? firstOperand : firstOperand += '.';
+  }
+
+  if (firstOperand && operator) {
+    display.value = isEmptyOperand(secondOperand) ? secondOperand = '0.' : secondOperand;
+    display.value = doesDecimalExist(secondOperand) ? secondOperand : secondOperand += '.';
+  }
 })
 
 document.querySelector(".equals").addEventListener("click", () => {
