@@ -2,14 +2,16 @@ const display = document.querySelector('#display');
 let firstOperand = '';
 let operator = null;
 let secondOperand = '';
+let isEquals = false;
 
 document.querySelectorAll(".number").forEach(numberButton => {
   numberButton.addEventListener("click", event => {
     const currentNumber = event.target.textContent;
 
-    // if(firstOperand && !operator && !secondOperand) {
-    //   firstOperand = '';
-    // }
+    if(firstOperand && !operator && isEquals) {
+      firstOperand = '';
+      isEquals = false;
+    }
 
     if (!operator) {
       firstOperand += currentNumber;
@@ -61,13 +63,23 @@ document.querySelector('.decimal').addEventListener('click', () => {
   }
 })
 
+const reset = (result) => {
+  firstOperand = result;
+  operator = null;
+  secondOperand = '';
+  display.value = result;
+  isEquals = true;
+}
 document.querySelector(".equals").addEventListener("click", () => {
   if (firstOperand && operator && secondOperand) {
     const result = calculate();
-    firstOperand = result;
-    operator = null;
-    secondOperand = '';
-    display.value = result;
+    reset(result);
+  }
+
+  if (firstOperand && operator) {
+    secondOperand = firstOperand;
+    const result = calculate();
+    reset(result);
   }
 })
 
