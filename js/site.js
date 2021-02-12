@@ -29,7 +29,7 @@ document.querySelectorAll('.math-symbol').forEach(symbolButton => {
   symbolButton.addEventListener('click', (event) => {
     const currentOperation = event.target.id;
 
-    if (!operator) {
+    if (!secondOperand) {
       operator = currentOperation;
     }
 
