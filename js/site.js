@@ -3,10 +3,13 @@ let firstOperand = '';
 let operator = null;
 let secondOperand = '';
 
-
 document.querySelectorAll(".number").forEach(numberButton => {
   numberButton.addEventListener("click", event => {
     const currentNumber = event.target.textContent;
+
+    if(firstOperand && !operator && !secondOperand) {
+      firstOperand = '';
+    }
 
     if (!operator) {
       firstOperand += currentNumber;
@@ -17,7 +20,6 @@ document.querySelectorAll(".number").forEach(numberButton => {
       secondOperand += currentNumber;
       display.value = secondOperand;
     }
-
   })
 })
 
@@ -39,8 +41,6 @@ symbolsContainer.addEventListener('click', (event) => {
 
 })
 
-
-
 document.querySelector(".equals").addEventListener("click", () => {
   if (firstOperand && operator && secondOperand) {
     const result = calculate();
@@ -50,7 +50,6 @@ document.querySelector(".equals").addEventListener("click", () => {
     display.value = result;
   }
 })
-
 
 const calculate = () => {
   switch (operator) {
@@ -64,7 +63,6 @@ const calculate = () => {
       return `${Number(firstOperand) + Number(secondOperand)}`;
   }
 }
-
 
 document.querySelector('#clear').addEventListener('click', () => {
   firstOperand = '';
