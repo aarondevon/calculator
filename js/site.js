@@ -103,5 +103,6 @@ document.querySelector('#clear').addEventListener('click', () => {
   operator = null;
   secondOperand = '';
   display.value = '0';
+  isEquals = false;
 })
 
